@@ -16,41 +16,40 @@ class DataList extends Component {
       saicheng3: '',
       sheshoubang: '射手榜',
     },
-    views:{}
+    views:{},
   }
   componentWillReceiveProps(nextProps){
-    console.log(nextProps)
     const {saicheng1} = this.state.tabs
     if(saicheng1 === nextProps.data.tabs.saicheng1){
       return false
     }
     this.setState({
-      ...nextProps
+      ...nextProps.data
     })
   }
-  shouldComponentUpdate(nextProps,nextState){
-    if(nextProps != this.state){
-      return true
-    }
-  }
-  componentDidUpdate(prevProps, prevState, snapshot){
-   
-  }
+
+
   componentDidMount(){
-    // console.log( 'data:', this.props)
+
   }
   render() {
     let { tabs, views } = this.state
     
-    let listHeader = Object.values(tabs)
-    let listContent = Object.values(views)
+    let listHeader = Object.values(tabs).filter(v => v !== null)
+    let listContent = Object.values(views).filter(v => v !== null)
     return (
       <div>
+        
         {
           listHeader.map( (item, index) => {
             return (
               <div>
-                <List  key={index} renderHeader={ ()=> item}>
+                <List key={item} renderHeader={ ()=> item}>
+                  listContent.map( subitem => {
+                    <Item>{subitem.c1}</Item>
+                  })
+
+                  
                 </List>
               </div>
             )

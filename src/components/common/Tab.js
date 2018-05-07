@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Tabs, WhiteSpace, Badge  } from 'antd-mobile'
+import { WhiteSpace,  Tabs  } from 'antd-mobile'
 
 import DataList from '../DataList/DataList'
 
@@ -17,6 +17,11 @@ class Tab extends Component {
     this.setState({
       list: list,
     })
+    setTimeout(() => {
+      this.setState({
+        msg: 'list',
+      })
+    }, 3000);
     // console.log(list)
   }
   onTabClickhandler(tab, index) {
@@ -42,7 +47,7 @@ class Tab extends Component {
           
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
             <WhiteSpace></WhiteSpace>
-            <DataList data={list[0]}></DataList>
+            <DataList data={list[0]} msg={this.state.msg}></DataList>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
             Content of second tab
