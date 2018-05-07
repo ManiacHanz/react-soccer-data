@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter, Route } from 'react-router-dom'
+import Loadable from 'react-loadable'
+import Loading from '../../components/common/Loading'
 import NavLink from '../../components/common/NavLink'
 
+const League = Loadable({ loader: () => import('./League'), loading(){return <Loading /> }})
 
-const League =() => {
-  return (
-  <div>League</div>
-    
-  )
-}
 
 const Team =() => (
   <div>Team</div>
@@ -39,7 +36,6 @@ class Home extends Component {
     }
   ]
   render() {
-    const { match } = this.props
     return (
       <div>
         <div>欢迎来到soccer</div>

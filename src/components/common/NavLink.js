@@ -6,6 +6,8 @@ import React, { Component } from 'react'
 import { TabBar } from 'antd-mobile';
 import { withRouter } from 'react-router-dom'
 
+import styles from './common.less'
+
 const { Item } = TabBar
 
 class NavLink extends Component {
@@ -21,12 +23,14 @@ class NavLink extends Component {
  
 
   render() {
-    const { data, history, match } = this.props
+    const { data, history, location } = this.props
     return (
+      <div className={styles.fixedBtm}>
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
           barTintColor="white"
+          
         >
           {
             data.map( v => {
@@ -46,6 +50,7 @@ class NavLink extends Component {
                     background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
                     />
                   }
+                  selected={ location.pathname === `/home${v.path}` }
                   onPress={ () => {
                     history.push(`/home${v.path}`)
                   }}
@@ -57,6 +62,7 @@ class NavLink extends Component {
           }
           
         </TabBar>
+      </div>
     );
   }
 }

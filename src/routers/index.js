@@ -15,7 +15,8 @@ class RouteConfig extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path='/' render={()=> (<Redirect to="/home" />) } />
+        <Route exact path='/' render={()=> (<Redirect to="/home/league" />) } />
+        <Route exact path='/home' render={()=> (<Redirect to="/home/league" />) } />
         <Route exact path='/home/:id' component={Home}></Route>
       </Switch>
     )
