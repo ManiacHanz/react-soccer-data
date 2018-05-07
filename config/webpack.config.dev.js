@@ -159,6 +159,7 @@ module.exports = {
           // in development "style" loader enables hot editing of CSS.
           {
             test: /\.(css|less)$/,
+            include: paths.appSrc,
             use: [
               require.resolve('style-loader'),
               {
@@ -167,7 +168,7 @@ module.exports = {
                 options: {
                   importLoaders: 1,
                   modules: true,
-                  localIdentName: '[path][name]__[local]--[hash:base64:5]',
+                  localIdentName: '[path][name]__[local]--[hash:base64:8]',
                 },
               },
               {
@@ -194,6 +195,20 @@ module.exports = {
                 loader: require.resolve('less-loader'),
               },
             ],
+          },
+          // antd  按需
+          {
+            test: /\.(css|less)$/,
+            exclude: paths.appSrc,
+            use: [
+              {loader: 'style-loader',},
+              {
+                loader: 'css-loader',
+                options: {
+                  importLoaders: 1,
+                }
+              }
+            ]
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.
