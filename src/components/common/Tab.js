@@ -15,6 +15,10 @@ class Tab extends Component {
     console.log('componentDidMount')
   }
   onTabClickhandler(tab, index) {
+    const { list } = this.state
+    if(list[index] !== null ){
+      return
+    }
     // console.log('onTabClick123', index, tab)
     this.getLeague(tab.title, index)
   }
