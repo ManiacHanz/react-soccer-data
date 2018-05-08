@@ -3,29 +3,29 @@ import { WhiteSpace,  Tabs  } from 'antd-mobile'
 
 import DataList from '../DataList/DataList'
 
-const dataSource = require('../../data/league')
+import axios from 'axios'
 
-
+import { getLeague } from '../../config/api'
 class Tab extends Component {
   state = { 
     list: [{},{},{},{},{}],
   }
-  componentDidMount(){
-    let data = dataSource.result
+  async componentDidMount(){
+    this.getLeague('西甲', 0)
+    console.log('componentDidMount')
+  }
+  onTabClickhandler(tab, index) {
+    // console.log('onTabClick123', index, tab)
+    this.getLeague(tab.title, index)
+  }
+  async getLeague( title, index ){
+    let response = await getLeague(title)
+    console.log(response)
     let {list} = this.state
-    list.splice(0,1,data)
+    list.splice(index,1,response.data.result)
     this.setState({
       list: list,
     })
-    setTimeout(() => {
-      this.setState({
-        msg: 'list',
-      })
-    }, 3000);
-    // console.log(list)
-  }
-  onTabClickhandler(tab, index) {
-    console.log('onTabClick123', index, tab)
   }
   render() {
     const tabs = [
@@ -47,7 +47,7 @@ class Tab extends Component {
           
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
             <WhiteSpace></WhiteSpace>
-            <DataList data={list[0]} msg={this.state.msg}></DataList>
+            <DataList data={list[0]}></DataList>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '150px', backgroundColor: '#fff' }}>
             Content of second tab

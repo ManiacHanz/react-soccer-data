@@ -19,6 +19,7 @@ class DataList extends Component {
     views:{},
   }
   componentWillReceiveProps(nextProps){
+    // console.log(nextProps)
     const {saicheng1} = this.state.tabs
     if(saicheng1 === nextProps.data.tabs.saicheng1){
       return false
@@ -33,29 +34,8 @@ class DataList extends Component {
 
   }
   render() {
-    let { tabs, views } = this.state
-    
-    let listHeader = Object.values(tabs).filter(v => v !== null)
-    let listContent = Object.values(views).filter(v => v !== null)
-    return (
-      <div>
-        
-        {
-          listHeader.map( (item, index) => {
-            return (
-              <div>
-                <List key={item} renderHeader={ ()=> item}>
-                  listContent.map( subitem => {
-                    <Item>{subitem.c1}</Item>
-                  })
-
-                  
-                </List>
-              </div>
-            )
-          })
-        }
-      </div>
+    return(
+      <div>1</div>
     )
   }
 }
