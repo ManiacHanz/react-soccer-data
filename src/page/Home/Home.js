@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Route } from 'react-router-dom'
+import { withRouter, Route, Redirect, Switch } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import Loading from '../../components/common/Loading'
 import NavLink from '../../components/common/NavLink'
@@ -36,18 +36,21 @@ class Home extends Component {
     }
   ]
   render() {
+    const { match } = this.props
     return (
       <div>
         <div>欢迎来到soccer</div>
         <div>
-          {
-            Home.menuData.map(v => {
-              return (
-                <Route key={v.path} path={`/home${v.path}`} component={v.component}/>
-              )
-            })
-          }
-         
+          <Switch>
+            {/* <Route path={`${match.path}`} render={ () => (<Redirect to={`${match.path}league`}/>) } /> */}
+            {
+              Home.menuData.map(v => {
+                return (
+                  <Route key={v.path} path={`${v.path}`} component={v.component}/>
+                )
+              })
+            }
+          </Switch>
         </div>
         <NavLink data={Home.menuData}></NavLink>
       </div>

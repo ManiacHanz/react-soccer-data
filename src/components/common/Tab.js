@@ -12,7 +12,7 @@ class Tab extends Component {
   }
   async componentDidMount(){
     this.getLeague('西甲', 0)
-    console.log('componentDidMount')
+    // console.log('componentDidMount')
   }
   onTabClickhandler(tab, index) {
     const { list } = this.state
@@ -24,7 +24,7 @@ class Tab extends Component {
   }
   async getLeague( title, index ){
     let response = await getLeague(title)
-    console.log(response)
+    // console.log(response)
     let {list} = this.state
     list.splice(index,1,response.data.result)
     this.setState({

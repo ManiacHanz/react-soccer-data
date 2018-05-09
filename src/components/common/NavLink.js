@@ -52,7 +52,7 @@ class NavLink extends Component {
                   }
                   selected={ location.pathname === `/home${v.path}` }
                   onPress={ () => {
-                    history.push(`/home${v.path}`)
+                    history.push(`${v.path}`)
                   }}
                 ></Item>
 

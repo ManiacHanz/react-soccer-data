@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { List } from 'antd-mobile'
+import { List, Table } from 'antd-mobile'
 
 import styles from './index.less'
 
@@ -18,24 +18,35 @@ class DataList extends Component {
     },
     views:{},
   }
-  componentWillReceiveProps(nextProps){
-    // console.log(nextProps)
-    const {saicheng1} = this.state.tabs
-    if(saicheng1 === nextProps.data.tabs.saicheng1){
-      return false
+  // componentWillReceiveProps(nextProps){
+  //   console.log(nextProps)
+  //   const {saicheng1} = this.state.tabs
+  //   if(saicheng1 === nextProps.data.tabs.saicheng1){
+  //     return false
+  //   }
+  //   this.setState({
+  //     ...nextProps.data
+  //   })
+  // }
+  static getDerivedStateFromProps(nextProps, prevState){
+    // 不知道为什么第一次没有数据的时候也触发了这个钩子
+    if( !nextProps.data.tabs) return prevState
+    if( nextProps.data.tabs.saicheng1 !== prevState.tabs.saicheng1){
+      return {
+        key: nextProps.data.key,
+        tabs: nextProps.data.tabs,
+        views: nextProps.data.views,
+      }
     }
-    this.setState({
-      ...nextProps.data
-    })
+    return null
   }
-
 
   componentDidMount(){
 
   }
   render() {
     return(
-      <div>1</div>
+      <div>{this.state.key}</div>
     )
   }
 }

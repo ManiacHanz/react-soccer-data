@@ -8,6 +8,10 @@ class League extends Component {
 
   }
   componentDidMount(){
+    
+  }
+  componentWillReceiveProps(nextProps){
+    
   }
   render() {
     return (
