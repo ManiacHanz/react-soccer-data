@@ -7,6 +7,7 @@ import NavLink from '../../components/common/NavLink'
 const League = Loadable({ loader: () => import('./League'), loading(){return <Loading /> }})
 
 
+
 const Team =() => (
   <div>Team</div>
 )
